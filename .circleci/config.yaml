@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.4.0
+
+jobs:
+  build:
+    executor:
+      name: win/vs2019
+      shell: powershell.exe
+    steps:
+      - checkout
+      - run:
+          name: "Run Build step"
+          command: msbuild.exe WebApplication1.sln
+      - store_artifacts:
+          path: .\WebApplication1\bin\WebApplication1.dll
